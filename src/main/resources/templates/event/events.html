@@ -28,7 +28,7 @@
                     <td th:text="${event.date}"></td>
                     <td th:text="${event.fences}"></td>
                     <td th:text="${event.signals}"></td>
-                    <td th:text="${event.host.name} ?: 'No host'"></td>
+                    <td th:text="${event?.host?.name} ?: 'No host'"></td>
 
                     <td>
                         <a th:href="@{/view/update/{id}(id=${event.id})}" class="btn btn-primary"> Update</a>

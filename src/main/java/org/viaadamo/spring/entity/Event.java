@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Event {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     @Column(nullable = false)
     private int fences;
@@ -43,7 +45,7 @@ public class Event {
     private List<Personal> employees = new ArrayList<>();
 
 
-    @JsonBackReference
+    //@JsonBackReference            //Out to check updates host null
     @ManyToOne
     @JoinColumn(name = "host_id")
     private Host host;
