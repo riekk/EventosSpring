@@ -18,7 +18,10 @@
             <input type="date" th:field="*{date}" th:value="*{date.toString()}" class="form-control mb-4 col-4" required>
             <input type="number" th:field="*{fences}" placeholder="Insert event fences" min="0" class="form-control mb-4 col-4" required>
             <input type="number" th:field="*{signals}" placeholder="Insert event signals" min="0" class="form-control mb-4 col-4" required>
-            <input type="hidden" th:field="*{host}" th:value="*{host}" class="form-control mb-4 col-4" readonly>
+            <select class="form-control mb-4 col-4">
+                <option th:each="host:${hostList}" th:value="${host}">[[${host.name}]]</option>
+            </select>
+            <!--input type="hidden" th:field="*{host}" th:value="*{host}" class="form-control mb-4 col-4" readonly-->
 
             <button type="submit" class="btn btn-info col-2">Update</button>
             <button type="reset" class="btn btn-info col-2">Reset</button>

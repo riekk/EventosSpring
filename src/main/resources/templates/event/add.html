@@ -17,7 +17,7 @@
             <input type="number" th:field="*{fences}" placeholder="Insert event fences" min="0" class="form-control mb-4 col-4" required>
             <input type="number" th:field="*{signals}" placeholder="Insert event signals" min="0" class="form-control mb-4 col-4" required>
             <select class="form-control mb-4 col-4">
-                <option th:each="host:${hosts}" th:value="${host.name}" th:text="*{name}">
+                <option th:each="host:${hostList}" th:value="${host}">[[${host.name}]]</option>
             </select>
 
 

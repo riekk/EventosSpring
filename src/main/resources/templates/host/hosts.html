@@ -18,20 +18,21 @@
             <th>Site</th>
             <th>Events count</th>
             <th>Manager</th>
+            <!--th>Actions</th-->
         </tr>
         </thead>
         <tbody>
-        <tr th:each="host:${hosts}">
-            <td th:text="${host.name}"></td>
-            <td th:text="${host.site}"></td>
-            <td th:text="${host.events.size()}"></td>
-            <td th:text="${host.manager.name}"></td>
+            <tr th:each="host:${hosts}">
+                <td th:text="${host.name}"></td>
+                <td th:text="${host.site}"></td>
+                <td th:text="${host.events.size()}"></td>
+                <td th:text="${host.manager.name}"></td>
 
-            <!--td>
-                <a th:href="@{/view/update/{id}(id=${host.id})}" class="btn btn-primary"> Update</a>
-                <a th:href="@{/view/delete/{id}(id=${host.id})}" class="btn btn-primary"> Delete</a>
-            </td-->
-        </tr>
+                <!--td>
+                    <a th:href="@{/view/update/{id}(id=${host.id})}" class="btn btn-primary"> Update</a>
+                    <a th:href="@{/view/delete/{id}(id=${host.id})}" class="btn btn-primary"> Delete</a>
+                </td-->
+            </tr>
         </tbody>
     </table>
 </div>
