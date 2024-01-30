@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <title>Event Manager - Add</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Form</h1>
+        <form action="#" th:action="@{/view/add}" th:object="${event}" method="POST">
+            <input type="text" th:field="*{name}" placeholder="Insert event name" class="form-control mb-4 col-4" required>
+            <input type="date" th:field="*{date}" class="form-control mb-4 col-4" required>
+            <input type="number" th:field="*{fences}" placeholder="Insert event fences" min="0" class="form-control mb-4 col-4" required>
+            <input type="number" th:field="*{signals}" placeholder="Insert event signals" min="0" class="form-control mb-4 col-4" required>
+            <select class="form-control mb-4 col-4">
+                <option th:each="host:${hosts}" th:value="${host.name}" th:text="*{name}">
+            </select>
+
+
+            <button type="submit" class="btn btn-info col-2">Save</button>
+            <button type="reset" class="btn btn-info col-2">Reset</button>
+        </form>
+        <a th:href="@{/view/events}">Back to events list</a>
+    </div>
+</body>
+</html>
