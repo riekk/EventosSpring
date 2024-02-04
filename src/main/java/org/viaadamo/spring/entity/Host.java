@@ -34,5 +34,9 @@ public class Host {
     @JoinColumn(name = "manager_id")
     private Manager manager;
 
+    public int getEventSize() {
+        return events.size();
+    }
+
 
 }
