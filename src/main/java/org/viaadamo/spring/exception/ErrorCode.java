@@ -6,5 +6,6 @@ public enum ErrorCode {
     DELETE_ERROR,
     UPDATE_ERROR,
     QUERY_ERROR,
-    ID_NOTFOUND
+    ID_NOTFOUND,
+    DATE_FORMAT_ERROR
 }

@@ -24,4 +24,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             "FROM Event e JOIN Personal p ON e.id = p.id " +
             "WHERE p.type = :typePersonal AND e.id = :idEvent")
     List<PersonalDTO> getPersonalByType(Long idEvent, PersonalType typePersonal);
+
+    @Query("SELECT count(e) FROM Event e WHERE e.date BETWEEN :startDate AND :endDate")
+    Long getNumberOfEventsDateBetween(LocalDate startDate, LocalDate endDate);
+
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/host")
-public class HostRestController {
+public class HostRestController implements HostApi {
 
     private final HostService service;
     public HostRestController(HostService service) {
@@ -33,11 +33,6 @@ public class HostRestController {
         return new ResponseEntity<>(hostDTOS, HttpStatus.OK);
     }
 
-    @GetMapping("/statistics/host/{id}")
-    public ResponseEntity<Long> getTotalEventsById(@PathVariable("id") Long id) {
-        Long total = service.getEventsStadistics(id);
-        return new ResponseEntity<>(total, HttpStatus.OK);
-    }
     
     @GetMapping("/manager/{manager_name}")
     public ResponseEntity<List<Host>> getByManagerName(@PathVariable("manager_name") String name) {

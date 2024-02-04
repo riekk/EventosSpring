@@ -10,12 +10,9 @@ import org.viaadamo.spring.entity.util.PersonalType;
 import org.viaadamo.spring.exception.ErrorCode;
 import org.viaadamo.spring.exception.ViaAdamoException;
 import org.viaadamo.spring.repository.EventRepository;
-import org.viaadamo.spring.util.EventFieldSort;
+import org.viaadamo.spring.controller.util.EventFieldSort;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -44,11 +41,13 @@ public class EventService {
      }
 
      public void delete(Long id) {
-         repository.deleteById(id);
+         if (id != 0) {
+             repository.deleteById(id);
+         }
      }
 
      public Event update(Event event) throws ViaAdamoException {
-         if (event.getId() != null) {
+         if (event.getId() != null && event.getId() != 0) {
              return repository.save(event);
          }
          throw new ViaAdamoException(ErrorCode.ID_NOTFOUND, "The field ID is mandatory");
@@ -79,7 +78,7 @@ public class EventService {
              //return repository.findAllByDateBetween(start, end);
          } catch (DateTimeParseException e) {
              System.out.println("The string is not a date and time: " + e.getMessage());
-             throw  new ViaAdamoException(ErrorCode.UPDATE_ERROR, "Date format not valid.");
+             throw  new ViaAdamoException(ErrorCode.DATE_FORMAT_ERROR, "Date format not valid.");
          }
 
      }
@@ -88,5 +87,8 @@ public class EventService {
          return repository.getPersonalByType(idEvent, typePersonal);
      }
 
+     public Long getEventsDateBetween(LocalDate startDate, LocalDate endDate) {
+         return repository.getNumberOfEventsDateBetween(startDate, endDate);
+     }
 
 }

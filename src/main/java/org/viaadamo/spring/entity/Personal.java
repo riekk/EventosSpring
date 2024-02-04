@@ -34,6 +34,6 @@ public class Personal {
 
     @JsonBackReference
     @ManyToMany(mappedBy = "employees")
-    private List<Event> events = new ArrayList<>();
+    private transient List<Event> events = new ArrayList<>();
 
 }

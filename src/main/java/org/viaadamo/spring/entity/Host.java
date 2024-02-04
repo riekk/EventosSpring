@@ -27,7 +27,7 @@ public class Host {
     @JsonBackReference
     @OneToMany(mappedBy = "host", cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<Event> events;
+    private transient List<Event> events;
 
     @JsonManagedReference
     @OneToOne

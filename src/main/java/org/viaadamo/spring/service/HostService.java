@@ -23,8 +23,8 @@ public class HostService {
         return repository.eventsForHost();
     }
 
-    public Long getEventsStadistics(Long id) {
-        return repository.countEventsById(id);
+    public Long getEventsStatistics(Long id) {
+        return repository.countEventsByHostId(id);
     }
 
     public List<Host> getByManagerName(String name) {

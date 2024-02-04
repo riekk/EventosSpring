@@ -25,7 +25,7 @@
             <tr th:each="host:${hosts}">
                 <td th:text="${host.name}"></td>
                 <td th:text="${host.site}"></td>
-                <td th:text="${host.events.size()}"></td>
+                <td th:text="${host?.events?.size() ?: '0'}"></td>
                 <td th:text="${host.manager.name}"></td>
 
                 <!--td>

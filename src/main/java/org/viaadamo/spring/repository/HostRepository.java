@@ -12,7 +12,9 @@ public interface HostRepository extends JpaRepository<Host, Long> {
     @Query("SELECT new org.viaadamo.spring.dto.HostDTO(h.name, COUNT(e)) FROM Host h JOIN Event e ON e.host.id = h.id GROUP BY h.name")
     List<HostDTO> eventsForHost();
 
-    Long countEventsById(Long id);
+    @Query("SELECT count(e) FROM Host h JOIN Event e ON e.host.id = h.id WHERE h.id = :idHost")
+    Long countEventsByHostId(Long idHost);
+
     List<Host> findHostByManager_NameIgnoreCaseContaining(String name);
 
     //Host findHostByManager_Name(String name);

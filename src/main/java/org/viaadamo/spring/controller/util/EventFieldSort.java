@@ -1,4 +1,4 @@
-package org.viaadamo.spring.util;
+package org.viaadamo.spring.controller.util;
 
 public enum EventFieldSort {
 

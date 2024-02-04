@@ -1,5 +1,6 @@
 package org.viaadamo.spring.controller;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,16 +10,13 @@ import org.viaadamo.spring.entity.Event;
 import org.viaadamo.spring.entity.util.PersonalType;
 import org.viaadamo.spring.exception.ViaAdamoException;
 import org.viaadamo.spring.service.EventService;
-import org.viaadamo.spring.util.EventFieldSort;
+import org.viaadamo.spring.controller.util.EventFieldSort;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping("/event")
-public class EventRestController {
+public class EventRestController implements EventApi {
 
     private final EventService service;
 
@@ -57,8 +55,12 @@ public class EventRestController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
-        service.delete(id);
-        return new ResponseEntity<>("The event was deleted.", HttpStatus.OK);
+        if (id != 0) {
+            service.delete(id);
+            return new ResponseEntity<>("The event was deleted.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("The id cant be 0.", HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/mostfences")
@@ -74,8 +76,8 @@ public class EventRestController {
     }
     */
    @GetMapping("/date/{start}/{end}")
-   public ResponseEntity<List<Event>> getByDate(@PathVariable("start") String start,
-                                                @PathVariable("end") String end) throws ViaAdamoException {
+   public ResponseEntity<List<Event>> getByDate(@PathVariable("start") @Parameter(description = "Date Format: yyyy-MM-dd", example = "2023-01-01") String start,
+                                                @PathVariable("end") @Parameter(description = "Date Format: yyyy-MM-dd", example = "2023-12-31") String end) throws ViaAdamoException {
         List<Event> events = service.findByDateBetween(start, end);
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
